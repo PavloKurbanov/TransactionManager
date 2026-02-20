@@ -1,7 +1,6 @@
-package ui;
+package ui.menu;
 
 import ui.command.Command;
-import ui.showMenuProcessor.ReportsMenuBuilder;
 import ui.io.InputReader;
 import service.CategoryService;
 import service.TransactionService;
@@ -9,20 +8,14 @@ import service.WalletService;
 
 import java.util.Map;
 
-public class ShowMenu {
+public class ReportsMenu {
     private final Map<String, Command> processors;
     private final InputReader inputReader;
-    private final WalletService walletService;
-    private final CategoryService categoryService;
-    private final TransactionService transactionService;
 
-    public ShowMenu(TransactionService transactionService, WalletService walletService, CategoryService categoryService, InputReader inputReader) {
+    public ReportsMenu(TransactionService transactionService, WalletService walletService, CategoryService categoryService, InputReader inputReader) {
         this.inputReader = inputReader;
-        this.transactionService = transactionService;
-        this.walletService = walletService;
-        this.categoryService = categoryService;
         ReportsMenuBuilder reportsMenuBuilder = new ReportsMenuBuilder(transactionService,categoryService, walletService, inputReader);
-        this.processors = reportsMenuBuilder.show();
+        this.processors = reportsMenuBuilder.build();
     }
 
     public void show() {

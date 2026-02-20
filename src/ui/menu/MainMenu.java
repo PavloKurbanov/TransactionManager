@@ -1,7 +1,6 @@
-package ui;
+package ui.menu;
 
 import ui.command.Command;
-import ui.mapBuilder.MainMenuBuilder;
 import ui.io.InputReader;
 import service.CategoryService;
 import service.TransactionService;
@@ -9,12 +8,12 @@ import service.WalletService;
 
 import java.util.Map;
 
-public class ConsoleUI {
+public class MainMenu {
     private final InputReader inputReader;
     private final Map<String, Command> builder;
 
-    public ConsoleUI(TransactionService transactionService, WalletService walletService, CategoryService  categoryService) {
-        this.inputReader = new InputReader();
+    public MainMenu(TransactionService transactionService, WalletService walletService, CategoryService  categoryService, InputReader inputReader) {
+        this.inputReader = inputReader;
         MainMenuBuilder mainMenuBuilder = new MainMenuBuilder(transactionService, inputReader,categoryService, walletService);
         this.builder = mainMenuBuilder.build();
     }

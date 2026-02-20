@@ -29,7 +29,7 @@ public class AddTransactionCommand implements Command {
 
             transactionService.createTransaction(string, wallet, category, amount, transactionType);
             System.out.println("Витрату " + string + " успішно додано!");
-        } catch (IllegalArgumentException e){
+        } catch (IllegalArgumentException e) {
             System.err.println("Помилка: " + e.getMessage());
         }
     }

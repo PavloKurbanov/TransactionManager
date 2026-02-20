@@ -25,7 +25,7 @@ public class AddWalletCommand implements Command {
             walletService.createWallet(new Wallet(walletName, amount));
             System.out.println("Гаманець " + walletName + " створено. Сума: " + amount);
         } catch (IllegalArgumentException e) {
-            System.out.println("ПОМИЛКА: " + e.getMessage());
+            System.err.println("ПОМИЛКА: " + e.getMessage());
         }
     }
 }

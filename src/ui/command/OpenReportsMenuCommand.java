@@ -1,16 +1,16 @@
-package ui.showMenuProcessor;
+package ui.command;
 
-import ui.command.Command;
+import ui.menu.ReportsMenu;
 import ui.io.InputReader;
 import service.CategoryService;
 import service.TransactionService;
 import service.WalletService;
 
 public class OpenReportsMenuCommand implements Command {
-    private final ReportsMenuBuilder reportsMenuBuilder;
+    private final ReportsMenu reportsMenu;
 
     public OpenReportsMenuCommand(TransactionService transactionService, WalletService walletService, CategoryService categoryService, InputReader inputReader) {
-        this.reportsMenuBuilder = new ReportsMenuBuilder(transactionService, categoryService, walletService, inputReader);
+        this.reportsMenu = new ReportsMenu(transactionService,walletService,categoryService,inputReader);
     }
 
     @Override
@@ -20,6 +20,6 @@ public class OpenReportsMenuCommand implements Command {
 
     @Override
     public void process() {
-        reportsMenuBuilder.show();
+        reportsMenu.show();
     }
 }

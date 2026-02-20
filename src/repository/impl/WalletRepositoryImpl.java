@@ -21,12 +21,12 @@ public class WalletRepositoryImpl implements WalletRepository {
     }
 
     @Override
-    public Wallet getWallet(String name) {
-        return wallets.get(name);
+    public Wallet getById(String id) {
+        return wallets.get(id);
     }
 
     @Override
-    public void saveWallet(Wallet wallet) {
+    public void save(Wallet wallet) {
         wallets.put(wallet.getName(), wallet);
     }
 }

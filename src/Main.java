@@ -1,4 +1,4 @@
-import ui.ConsoleUI;
+import ui.menu.MainMenu;
 import repository.*;
 import repository.impl.CategoryRepositoryImpl;
 import repository.impl.TransactionRepositoryImpl;
@@ -9,11 +9,13 @@ import service.WalletService;
 import service.impl.CategoryServiceImpl;
 import service.impl.TransactionServiceImpl;
 import service.impl.WalletServiceImpl;
+import ui.io.InputReader;
 
 //TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
 
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 void main() {
+    InputReader  inputReader = new InputReader();
     CategoryRepository categoryRepository = new CategoryRepositoryImpl();
     WalletRepository walletRepository = new WalletRepositoryImpl();
     TransactionRepository transactionRepository = new TransactionRepositoryImpl();
@@ -22,7 +24,7 @@ void main() {
     WalletService walletService = new WalletServiceImpl(walletRepository);
 
     TransactionService transactionService = new TransactionServiceImpl(categoryRepository, walletRepository, transactionRepository);
-    ConsoleUI consoleUI = new ConsoleUI(transactionService, walletService, categoryService);
+    MainMenu mainMenu = new MainMenu(transactionService, walletService, categoryService, inputReader);
 
-    consoleUI.start();
+    mainMenu.start();
 }

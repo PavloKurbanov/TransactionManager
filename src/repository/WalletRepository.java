@@ -2,14 +2,15 @@ package repository;
 
 
 import entity.Wallet;
+import util.CrudRepository;
 
 import java.util.List;
 
-public interface WalletRepository {
+public interface WalletRepository extends CrudRepository<Wallet, String> {
 
-    void saveWallet(Wallet wallet);
+    void save(Wallet wallet);
 
-    Wallet getWallet(String name);
+    Wallet getById(String id);
 
     List<Wallet> getAll();
 }

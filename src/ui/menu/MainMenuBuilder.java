@@ -1,14 +1,14 @@
-package ui.mapBuilder;
+package ui.menu;
 
 import ui.command.AddCategoryCommand;
 import ui.command.AddTransactionCommand;
 import ui.command.AddWalletCommand;
 import ui.command.Command;
-import ui.showMenuProcessor.OpenReportsMenuCommand;
 import ui.io.InputReader;
 import service.CategoryService;
 import service.TransactionService;
 import service.WalletService;
+import ui.command.OpenReportsMenuCommand;
 
 import java.util.HashMap;
 import java.util.Map;

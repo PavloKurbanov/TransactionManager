@@ -15,16 +15,12 @@ public class CategoryServiceImpl implements CategoryService {
 
     @Override
     public List<Category> getAllCategories() {
-        List<Category> all = categoryRepository.getAll();
-        if(all.isEmpty()) {
-            throw new IllegalArgumentException("Список категорії пустий");
-        }
-        return all;
+        return categoryRepository.getAll();
     }
 
     @Override
     public void createCategory(Category category) {
-        if(category == null) {
+        if (category == null) {
             throw new IllegalArgumentException("Введіть коректні дані!");
         }
         categoryRepository.saveCategory(category);

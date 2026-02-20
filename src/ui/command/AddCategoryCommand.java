@@ -23,8 +23,9 @@ public class AddCategoryCommand implements Command {
         try {
             String categoryName = inputReader.readString("Введіть назву категорії: ");
             categoryService.createCategory(new Category(categoryName));
-            System.out.println("Категорію " + categoryName + " створено");;
-        } catch (IllegalArgumentException e){
+            System.out.println("Категорію " + categoryName + " створено");
+            ;
+        } catch (IllegalArgumentException e) {
             System.out.println("ПОМИЛКА: " + e.getMessage());
         }
     }

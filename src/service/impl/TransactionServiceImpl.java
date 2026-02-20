@@ -27,7 +27,7 @@ public class TransactionServiceImpl implements TransactionService {
     @Override
     public void createTransaction(String name, String walletName, String categoryName, double amount, TransactionType transactionType) {
 
-        Wallet wallet = walletRepository.getWallet(walletName);
+        Wallet wallet = walletRepository.getById(walletName);
         if (wallet == null) {
             throw new IllegalArgumentException("Не має такого гаманця");
         }
@@ -43,7 +43,7 @@ public class TransactionServiceImpl implements TransactionService {
             wallet.deposit(amount);
         }
 
-        walletRepository.saveWallet(wallet);
+        walletRepository.save(wallet);
 
         Transaction transaction = new Transaction(0, name, walletName, categoryName, amount, transactionType);
 
@@ -52,18 +52,14 @@ public class TransactionServiceImpl implements TransactionService {
 
     @Override
     public List<Transaction> getAllTransaction() {
-        List<Transaction> all = transactionRepository.getAll();
-        if (all.isEmpty()) {
-            throw new IllegalArgumentException("Список транзакцій пустий!");
-        }
-        return all;
+        return transactionRepository.getAll();
     }
 
     @Override
     public List<Transaction> getAllTransactionByDate(LocalDate localDate) {
         List<Transaction> dateTransactions = transactionRepository.getDateTransactions(localDate);
         if (dateTransactions.isEmpty()) {
-            throw new IllegalArgumentException("Не має транзакцій за" + localDate.format(DateFormatter.FORMATTED) + "дату");
+            throw new IllegalArgumentException("Не має транзакцій за " + localDate.format(DateFormatter.FORMATTED));
         }
         return dateTransactions;
     }

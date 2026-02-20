@@ -21,7 +21,7 @@ public class WalletServiceImpl implements WalletService {
         if (wallet.getAmount() < 0) {
             throw new IllegalArgumentException("Сума не може бути менше 0");
         }
-        walletRepository.saveWallet(wallet);
+        walletRepository.save(wallet);
     }
 
     @Override
@@ -29,16 +29,11 @@ public class WalletServiceImpl implements WalletService {
         if (name == null) {
             throw new IllegalArgumentException("Введіть коректну назву");
         }
-        return walletRepository.getWallet(name);
+        return walletRepository.getById(name);
     }
 
     @Override
     public List<Wallet> getWallets() {
-        List<Wallet> all = walletRepository.getAll();
-
-        if (all.isEmpty()) {
-           throw new IllegalArgumentException("Список гаманців пустий!");
-        }
-        return all;
+        return walletRepository.getAll();
     }
 }
