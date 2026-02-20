@@ -1,6 +1,7 @@
-package repository;
+package repository.impl;
 
 import entity.Category;
+import repository.CategoryRepository;
 
 import java.util.ArrayList;
 import java.util.HashMap;

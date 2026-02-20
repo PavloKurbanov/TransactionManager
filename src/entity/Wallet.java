@@ -47,4 +47,9 @@ public class Wallet {
     public int hashCode() {
         return Objects.hash(name, amount);
     }
+
+    @Override
+    public String toString() {
+        return String.format("Назва: %s | Сума: %.2f", name, amount);
+    }
 }

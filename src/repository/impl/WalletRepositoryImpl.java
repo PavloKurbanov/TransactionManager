@@ -1,16 +1,17 @@
-package repository;
+package repository.impl;
 
 import entity.Wallet;
+import repository.WalletRepository;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class WalletRepositoryImpl implements WalletRepository{
+public class WalletRepositoryImpl implements WalletRepository {
     private final Map<String, Wallet> wallets;
 
-    public WalletRepositoryImpl(){
+    public WalletRepositoryImpl() {
         this.wallets = new HashMap<>();
     }
 

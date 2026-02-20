@@ -1,12 +1,14 @@
-import consoleUI.ConsoleUI;
-import dataformated.TimeFormat;
-import entity.Category;
-import entity.Transaction;
-import entity.Wallet;
-import io.InputReader;
+import ui.ConsoleUI;
 import repository.*;
-import service.TransactionManagerService;
-import service.TransactionManagerServiceImpl;
+import repository.impl.CategoryRepositoryImpl;
+import repository.impl.TransactionRepositoryImpl;
+import repository.impl.WalletRepositoryImpl;
+import service.CategoryService;
+import service.TransactionService;
+import service.WalletService;
+import service.impl.CategoryServiceImpl;
+import service.impl.TransactionServiceImpl;
+import service.impl.WalletServiceImpl;
 
 //TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
 
@@ -16,8 +18,11 @@ void main() {
     WalletRepository walletRepository = new WalletRepositoryImpl();
     TransactionRepository transactionRepository = new TransactionRepositoryImpl();
 
-    TransactionManagerService transactionManagerService = new TransactionManagerServiceImpl(categoryRepository, walletRepository, transactionRepository);
-    ConsoleUI consoleUI = new ConsoleUI(transactionManagerService);
+    CategoryService categoryService = new CategoryServiceImpl(categoryRepository);
+    WalletService walletService = new WalletServiceImpl(walletRepository);
+
+    TransactionService transactionService = new TransactionServiceImpl(categoryRepository, walletRepository, transactionRepository);
+    ConsoleUI consoleUI = new ConsoleUI(transactionService, walletService, categoryService);
 
     consoleUI.start();
 }

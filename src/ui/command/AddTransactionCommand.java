@@ -1,21 +1,21 @@
-package consoleUI.addCategory;
+package ui.command;
 
-import consoleUI.menu.processor.Processor;
-import io.InputReader;
-import service.TransactionManagerService;
+import entity.TransactionType;
+import ui.io.InputReader;
+import service.TransactionService;
 
-public class AddCategoryProcessor implements Processor {
+public class AddTransactionCommand implements Command {
     private final InputReader inputReader;
-    private final TransactionManagerService transactionManagerService;
+    private final TransactionService transactionService;
 
-    public AddCategoryProcessor(TransactionManagerService transactionManagerService, InputReader inputReader) {
+    public AddTransactionCommand(TransactionService transactionService, InputReader inputReader) {
         this.inputReader = inputReader;
-        this.transactionManagerService = transactionManagerService;
+        this.transactionService = transactionService;
     }
 
     @Override
     public String choice() {
-        return "1";
+        return "3";
     }
 
     @Override
@@ -25,8 +25,9 @@ public class AddCategoryProcessor implements Processor {
             String wallet = inputReader.readString("Введіть назву гаманця: ");
             String category = inputReader.readString("Введіть назву категорії: ");
             Double amount = inputReader.readDouble("Введіть суму витрати: ");
+            TransactionType transactionType = inputReader.readTransactionType();
 
-            transactionManagerService.createTransaction(string, wallet, category, amount);
+            transactionService.createTransaction(string, wallet, category, amount, transactionType);
             System.out.println("Витрату " + string + " успішно додано!");
         } catch (IllegalArgumentException e){
             System.err.println("Помилка: " + e.getMessage());
