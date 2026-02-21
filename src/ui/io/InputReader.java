@@ -31,7 +31,7 @@ public class InputReader {
         }
     }
 
-    public LocalDate readTime() {
+    public LocalDate readDate() {
         System.out.println("Введіть дату через '-' ");
         LocalDate dateTime = null;
         while (dateTime == null) {

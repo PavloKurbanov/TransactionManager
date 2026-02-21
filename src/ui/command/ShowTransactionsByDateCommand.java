@@ -19,7 +19,7 @@ public class ShowTransactionsByDateCommand implements Command {
 
     @Override
     public void process() {
-        LocalDate localDate = inputReader.readTime();
+        LocalDate localDate = inputReader.readDate();
         List<Transaction> allTransactionByDate = transactionService.getAllTransactionByDate(localDate);
         if (allTransactionByDate.isEmpty()) {
             System.out.println("Не має тратзакцій за " + localDate.format(DateFormatter.FORMATTED));
