@@ -32,26 +32,31 @@ public class AddTransactionCommand implements Command {
     @Override
     public void process() {
         try {
-            String string = inputReader.readString("Введіть назву витрати: ");
-
             List<Wallet> wallets = walletService.getWallets();
-            if (ConsolePrinter.printList(wallets, "Немає гаманців", "----- ГАМАНЦІ -----")) {
+            List<Category> allCategories = categoryService.getAllCategories();
+
+            if (ConsolePrinter.printList(wallets, "Щоб створити транзакцію, створіть гаманець!")) {
                 return;
             }
+
+            if (ConsolePrinter.printList(allCategories, "Щоб створити транзакцію, створіть категорію!")) {
+                return;
+            }
+
+            String transactionName = inputReader.readString("Введіть назву витрати: ");
+
+            ConsolePrinter.extracted(wallets, "----- ГАМАНЦІ -----");
             String wallet = inputReader.readString("Введіть назву гаманця: ");
 
-            List<Category> allCategories = categoryService.getAllCategories();
-            if (ConsolePrinter.printList(allCategories, "Немає категорій", "----- КАТЕГОРІЇ -----)")) {
-                return;
-            }
+            ConsolePrinter.extracted(allCategories, "----- КАТЕГОРІЇ -----");
             String category = inputReader.readString("Введіть назву категорії: ");
 
             Double amount = inputReader.readDouble("Введіть суму витрати: ");
 
             TransactionType transactionType = inputReader.readTransactionType();
-            transactionService.createTransaction(string, wallet, category, amount, transactionType);
+            transactionService.createTransaction(transactionName, wallet, category, amount, transactionType);
 
-            System.out.println("Витрату " + string + " успішно додано!");
+            System.out.println("Витрату " + transactionName + " успішно додано!");
 
         } catch (IllegalArgumentException e) {
             System.err.println("Помилка: " + e.getMessage());
