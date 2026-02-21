@@ -16,10 +16,8 @@ public class ConsolePrinter {
         return false; // Сигнал, що все добре, дані є
     }
 
-    public static <T> void extracted(List<T> list, String header) {
+    public static <T> void showList(List<T> list, String header) {
         System.out.println(header);
         list.forEach(System.out::println);
     }
-
-
 }

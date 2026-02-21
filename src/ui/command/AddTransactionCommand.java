@@ -45,10 +45,10 @@ public class AddTransactionCommand implements Command {
 
             String transactionName = inputReader.readString("Введіть назву витрати: ");
 
-            ConsolePrinter.extracted(wallets, "----- ГАМАНЦІ -----");
+            ConsolePrinter.showList(wallets, "----- ГАМАНЦІ -----");
             String wallet = inputReader.readString("Введіть назву гаманця: ");
 
-            ConsolePrinter.extracted(allCategories, "----- КАТЕГОРІЇ -----");
+            ConsolePrinter.showList(allCategories, "----- КАТЕГОРІЇ -----");
             String category = inputReader.readString("Введіть назву категорії: ");
 
             Double amount = inputReader.readDouble("Введіть суму витрати: ");
