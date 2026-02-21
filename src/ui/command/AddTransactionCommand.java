@@ -35,11 +35,11 @@ public class AddTransactionCommand implements Command {
             List<Wallet> wallets = walletService.getWallets();
             List<Category> allCategories = categoryService.getAllCategories();
 
-            if (ConsolePrinter.printList(wallets, "Щоб створити транзакцію, створіть гаманець!")) {
+            if (ConsolePrinter.checkIfEmpty(wallets, "Щоб створити транзакцію, створіть гаманець!")) {
                 return;
             }
 
-            if (ConsolePrinter.printList(allCategories, "Щоб створити транзакцію, створіть категорію!")) {
+            if (ConsolePrinter.checkIfEmpty(allCategories, "Щоб створити транзакцію, створіть категорію!")) {
                 return;
             }
 

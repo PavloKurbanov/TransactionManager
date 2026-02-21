@@ -4,7 +4,7 @@ import java.util.List;
 
 public class ConsolePrinter {
 
-    public static <T> boolean printList(List<T> list, String emptyMessage) {
+    public static <T> boolean checkIfEmpty(List<T> list, String emptyMessage) {
         if (list.isEmpty()) {
             System.out.println("❌ " + emptyMessage);
             return true;
