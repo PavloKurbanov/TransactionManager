@@ -29,7 +29,7 @@ public class MainMenuBuilder {
     public Map<String, Command> build(){
         Map<String, Command> transaction = new HashMap<>();
 
-        Command addTransaction = new AddTransactionCommand(transactionService, inputReader);
+        Command addTransaction = new AddTransactionCommand(transactionService, inputReader,walletService, categoryService);
         Command addWallet = new AddWalletCommand(walletService, inputReader);
         Command addCategory = new AddCategoryCommand(categoryService, inputReader);
         Command showMenu = new OpenReportsMenuCommand(transactionService,walletService,categoryService,inputReader);
