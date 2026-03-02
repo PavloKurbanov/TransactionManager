@@ -6,22 +6,20 @@ import java.time.LocalDate;
 import java.util.Objects;
 
 public class Transaction {
-    private int id;
+    private Integer id;
     private final String name;
     private final String walletName;
     private final String categoryName;
     private final LocalDate date;
-    private double amount;
-    private final TransactionType type;
+    private final double amount;
 
-    public Transaction(int id, String name, String walletName, String categoryName, double amount,  TransactionType type) {
+    public Transaction(Integer id, String name, String walletName, String categoryName, double amount) {
         this.id = id;
         this.name = name;
         this.walletName = walletName;
         this.categoryName = categoryName;
         this.amount = amount;
         this.date = LocalDate.now();
-        this.type = type;
     }
 
     public String getName() {
@@ -40,23 +38,15 @@ public class Transaction {
         return amount;
     }
 
-    public void setAmount(double amount) {
-        this.amount = amount;
-    }
-
     public LocalDate getDate() {
         return date;
     }
 
-    public TransactionType getType() {
-        return type;
-    }
-
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -75,7 +65,7 @@ public class Transaction {
 
     @Override
     public String toString() {
-        return String.format("ID: %d | Назва: %s | Гаманець: %s | Категорія: %s |Сума: %.2f | Дата: %s | Тип: %s",
-                id, name, walletName, categoryName, amount, date.format(DateFormatter.FORMATTED), type.getDescription());
+        return String.format("ID: %d | Назва: %s | Гаманець: %s | Категорія: %s |Сума: %.2f | Дата: %s",
+                id, name, walletName, categoryName, amount, DateFormatter.format(date));
     }
 }

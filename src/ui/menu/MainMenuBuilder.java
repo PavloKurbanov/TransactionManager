@@ -13,26 +13,16 @@ import ui.command.OpenReportsMenuCommand;
 import java.util.HashMap;
 import java.util.Map;
 
-public class MainMenuBuilder {
-    private final WalletService walletService;
-    private final CategoryService  categoryService;
-    private final TransactionService transactionService;
-    private final InputReader inputReader;
+public record MainMenuBuilder(TransactionService transactionService, InputReader inputReader,
+                              CategoryService categoryService, WalletService walletService) {
 
-    public MainMenuBuilder(TransactionService transactionService, InputReader inputReader, CategoryService categoryService, WalletService walletService) {
-        this.inputReader = inputReader;
-        this.transactionService = transactionService;
-        this.categoryService = categoryService;
-        this.walletService = walletService;
-    }
-
-    public Map<String, Command> build(){
+    public Map<String, Command> build() {
         Map<String, Command> transaction = new HashMap<>();
 
-        Command addTransaction = new AddTransactionCommand(transactionService, inputReader);
+        Command addTransaction = new AddTransactionCommand(transactionService, inputReader, walletService, categoryService);
         Command addWallet = new AddWalletCommand(walletService, inputReader);
         Command addCategory = new AddCategoryCommand(categoryService, inputReader);
-        Command showMenu = new OpenReportsMenuCommand(transactionService,walletService,categoryService,inputReader);
+        Command showMenu = new OpenReportsMenuCommand(transactionService, walletService, categoryService, inputReader);
 
         transaction.put(addTransaction.choice(), addTransaction);
         transaction.put(addWallet.choice(), addWallet);

@@ -2,15 +2,11 @@ package ui.command;
 
 import entity.Category;
 import service.CategoryService;
+import util.ConsolePrinter;
 
 import java.util.List;
 
-public class ShowCategoriesCommand implements Command {
-    private final CategoryService categoryService;
-
-    public ShowCategoriesCommand(CategoryService categoryService) {
-        this.categoryService = categoryService;
-    }
+public record ShowCategoriesCommand(CategoryService categoryService) implements Command {
 
     @Override
     public String choice() {
@@ -20,14 +16,9 @@ public class ShowCategoriesCommand implements Command {
     @Override
     public void process() {
         List<Category> allCategories = categoryService.getAllCategories();
-        if (allCategories.isEmpty()) {
-            System.out.println("Не має категорій");
+        if (ConsolePrinter.printList(allCategories, "Не має категорій")) {
             return;
         }
-
-        System.out.println("----- КАТЕГОРІЇ -----");
-        for (Category category : allCategories) {
-            System.out.println(category);
-        }
+        ConsolePrinter.showList(allCategories, "----- КАТЕГОРІЇ -----");
     }
 }
