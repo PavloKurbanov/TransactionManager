@@ -1,7 +1,6 @@
 package ui.io;
 
 import util.DateFormatter;
-import entity.TransactionType;
 
 import java.time.DateTimeException;
 import java.time.LocalDate;
@@ -36,7 +35,7 @@ public class InputReader {
         LocalDate dateTime = null;
         while (dateTime == null) {
             try {
-                dateTime = LocalDate.parse(scanner.nextLine(), DateFormatter.FORMATTED);
+                dateTime = DateFormatter.parse(scanner.nextLine());
             } catch (IllegalArgumentException | DateTimeException e) {
                 System.err.println("Помилка: " + e.getMessage());
             }
@@ -44,7 +43,7 @@ public class InputReader {
         return dateTime;
     }
 
-    public TransactionType readTransactionType() {
+    /*public TransactionType readTransactionType() {
         TransactionType[] transactionTypes = TransactionType.values();
         TransactionType transactionType = null;
         do {
@@ -62,5 +61,5 @@ public class InputReader {
             }
         } while (transactionType == null);
         return transactionType;
-    }
+    }*/
 }

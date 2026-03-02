@@ -5,12 +5,7 @@ import service.WalletService;
 
 import java.util.List;
 
-public class ShowWalletsCommand implements Command {
-    private final WalletService walletService;
-
-    public ShowWalletsCommand(WalletService walletService) {
-        this.walletService = walletService;
-    }
+public record ShowWalletsCommand(WalletService walletService) implements Command {
 
     @Override
     public String choice() {

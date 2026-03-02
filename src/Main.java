@@ -1,3 +1,6 @@
+import repository.fileImpl.FIleCategoryRepository;
+import repository.fileImpl.FileTransactionRepository;
+import repository.fileImpl.FileWalletRepository;
 import ui.menu.MainMenu;
 import repository.*;
 import repository.impl.CategoryRepositoryImpl;
@@ -15,10 +18,13 @@ import ui.io.InputReader;
 
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 void main() {
+    Path wallets = Paths.get("wallets.txt");
+    Path transactions = Paths.get("transactions.txt");
+    Path categories = Paths.get("categories.txt");
     InputReader  inputReader = new InputReader();
-    CategoryRepository categoryRepository = new CategoryRepositoryImpl();
-    WalletRepository walletRepository = new WalletRepositoryImpl();
-    TransactionRepository transactionRepository = new TransactionRepositoryImpl();
+    CategoryRepository categoryRepository = new FIleCategoryRepository(categories);
+    WalletRepository walletRepository = new FileWalletRepository(wallets);
+    TransactionRepository transactionRepository = new FileTransactionRepository(transactions);
 
     CategoryService categoryService = new CategoryServiceImpl(categoryRepository);
     WalletService walletService = new WalletServiceImpl(walletRepository);

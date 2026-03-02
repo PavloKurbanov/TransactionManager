@@ -6,12 +6,7 @@ import service.CategoryService;
 
 import java.util.List;
 
-public class CategoryServiceImpl implements CategoryService {
-    private final CategoryRepository categoryRepository;
-
-    public CategoryServiceImpl(CategoryRepository categoryRepository) {
-        this.categoryRepository = categoryRepository;
-    }
+public record CategoryServiceImpl(CategoryRepository categoryRepository) implements CategoryService {
 
     @Override
     public List<Category> getAllCategories() {
