@@ -4,7 +4,14 @@ import entity.Category;
 import ui.io.InputReader;
 import service.CategoryService;
 
-public record AddCategoryCommand(CategoryService categoryService, InputReader inputReader) implements Command {
+public class AddCategoryCommand implements Command {
+    private final CategoryService categoryService;
+    private final InputReader inputReader;
+
+    public AddCategoryCommand(CategoryService categoryService, InputReader inputReader) {
+        this.categoryService = categoryService;
+        this.inputReader = inputReader;
+    }
 
     @Override
     public String choice() {

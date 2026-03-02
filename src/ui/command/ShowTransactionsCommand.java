@@ -5,7 +5,12 @@ import service.TransactionService;
 
 import java.util.List;
 
-public record ShowTransactionsCommand(TransactionService transactionService) implements Command {
+public class ShowTransactionsCommand implements Command {
+    private final TransactionService transactionService;
+
+    public ShowTransactionsCommand(TransactionService transactionService) {
+        this.transactionService = transactionService;
+    }
 
     @Override
     public String choice() {

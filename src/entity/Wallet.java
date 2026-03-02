@@ -19,6 +19,13 @@ public class Wallet {
         return amount;
     }
 
+    public void deposit(double amount){
+        if(amount <= 0){
+            throw new IllegalArgumentException("Сума повинна бути бульше 0");
+        }
+        this.amount += amount;
+    }
+
     public void withdraw(double amount){
         if(amount <= 0){
             throw new IllegalArgumentException("Сума повинна бути бульше 0");

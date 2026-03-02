@@ -4,7 +4,14 @@ import entity.Wallet;
 import ui.io.InputReader;
 import service.WalletService;
 
-public record AddWalletCommand(WalletService walletService, InputReader inputReader) implements Command {
+public class AddWalletCommand implements Command {
+    private final WalletService walletService;
+    private final InputReader inputReader;
+
+    public AddWalletCommand(WalletService walletService, InputReader inputReader) {
+        this.walletService = walletService;
+        this.inputReader = inputReader;
+    }
     @Override
     public String choice() {
         return "1";

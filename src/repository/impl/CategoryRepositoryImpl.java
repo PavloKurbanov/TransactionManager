@@ -17,7 +17,7 @@ public class CategoryRepositoryImpl implements CategoryRepository {
 
     @Override
     public void saveCategory(Category category) {
-        categories.put(category.name(), category);
+        categories.put(category.getName(), category);
     }
 
     @Override

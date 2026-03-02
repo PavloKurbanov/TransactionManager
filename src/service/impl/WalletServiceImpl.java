@@ -6,7 +6,12 @@ import service.WalletService;
 
 import java.util.List;
 
-public record WalletServiceImpl(WalletRepository walletRepository) implements WalletService {
+public class WalletServiceImpl implements WalletService {
+    private final WalletRepository walletRepository;
+
+    public WalletServiceImpl(WalletRepository walletRepository) {
+        this.walletRepository = walletRepository;
+    }
 
     @Override
     public void createWallet(Wallet wallet) {

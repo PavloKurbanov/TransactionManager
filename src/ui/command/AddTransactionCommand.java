@@ -1,17 +1,17 @@
 package ui.command;
 
-import entity.Category;
-import entity.Wallet;
-import service.CategoryService;
-import service.WalletService;
+import entity.TransactionType;
 import ui.io.InputReader;
 import service.TransactionService;
-import util.ConsolePrinter;
 
-import java.util.List;
+public class AddTransactionCommand implements Command {
+    private final InputReader inputReader;
+    private final TransactionService transactionService;
 
-public record AddTransactionCommand(TransactionService transactionService, InputReader inputReader,
-                                    WalletService walletService, CategoryService categoryService) implements Command {
+    public AddTransactionCommand(TransactionService transactionService, InputReader inputReader) {
+        this.inputReader = inputReader;
+        this.transactionService = transactionService;
+    }
 
     @Override
     public String choice() {
@@ -21,33 +21,16 @@ public record AddTransactionCommand(TransactionService transactionService, Input
     @Override
     public void process() {
         try {
-            // 1. Дістаємо списки
-            List<Wallet> wallets = walletService.getWallets();
-            List<Category> categories = categoryService.getAllCategories();
-
-            // 2. Одразу друкуємо і перевіряємо! (Fail Fast)
-            if (ConsolePrinter.printList(wallets, "Спочатку створіть гаманець!")) {
-                return;
-            }
-            if (ConsolePrinter.printList(categories, "Спочатку створіть категорію!")) {
-                return;
-            }
-
-            // 3. Якщо ми дійшли сюди, значить і гаманці, і категорії надруковані на екран.
-            // Можемо безпечно збирати дані.
-            String transactionName = inputReader.readString("Введіть назву витрати: ");
-            ConsolePrinter.showList(wallets, "----- ГАМАНЦІ -----");
-            String wallet = inputReader.readString("Оберіть гаманець (введіть назву): ");
-            ConsolePrinter.showList(categories, "----- КАТЕГОРІЇ -----");
+            String string = inputReader.readString("Введіть назву витрати: ");
+            String wallet = inputReader.readString("Введіть назву гаманця: ");
             String category = inputReader.readString("Введіть назву категорії: ");
             Double amount = inputReader.readDouble("Введіть суму витрати: ");
-            //TransactionType transactionType = inputReader.readTransactionType();
+            TransactionType transactionType = inputReader.readTransactionType();
 
-            transactionService.createTransaction(transactionName, wallet, category, amount);
-            System.out.println("✅ Витрату '" + transactionName + "' успішно додано!");
-
+            transactionService.createTransaction(string, wallet, category, amount, transactionType);
+            System.out.println("Витрату " + string + " успішно додано!");
         } catch (IllegalArgumentException e) {
-            System.out.println("❌ Помилка: " + e.getMessage());
+            System.err.println("Помилка: " + e.getMessage());
         }
     }
 }

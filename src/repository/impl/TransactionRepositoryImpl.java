@@ -1,11 +1,14 @@
 package repository.impl;
 
 import entity.Transaction;
+import entity.TransactionType;
 import repository.TransactionRepository;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class TransactionRepositoryImpl implements TransactionRepository {
     private final List<Transaction> transactions;
@@ -32,6 +35,18 @@ public class TransactionRepositoryImpl implements TransactionRepository {
         }
 
         return getAllTransactionDate;
+    }
+
+    @Override
+    public List<Transaction> getTransactionByType(TransactionType transactionType) {
+        List<Transaction> getAllTransactionType = new ArrayList<>();
+
+        for (Transaction transaction : transactions) {
+            if(transaction.getType().equals(transactionType)) {
+                getAllTransactionType.add(transaction);
+            }
+        }
+        return getAllTransactionType;
     }
 
     @Override
